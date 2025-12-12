@@ -1,0 +1,145 @@
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  enable debug logging with { debug: true }
+
+
+  JajaToken
+    1) should deploy and set initial supply
+    2) should upgrade token and keep state
+    3) should respect cap and burn/pause functionality
+
+  Roles & UUPS protection
+    ✔ should only allow MINTER_ROLE to mint in upgradeable token (71ms)
+    4) should only allow owner to authorize upgrades (UUPS) for token and vesting
+    5) should enforce PAUSER_ROLE for pause/unpause
+
+  TokenVesting edge cases
+    6) should revert when duration is zero or cliff > duration
+    7) should revert revoke when not revocable
+
+  TokenVesting
+    8) should vest tokens linearly after the cliff and allow release
+    9) should not allow revoke if not revocable
+
+  TokenVestingUpgradeable
+    10) should deploy upgradeable vesting and allow release/revoke properly
+    11) should upgrade vesting contract and keep state
+
+
+  1 passing (2s)
+  11 failing
+
+  1) JajaToken
+       should deploy and set initial supply:
+     AssertionError: Expected transaction to be reverted with reason 'ERC20Pausable: token transfer while paused', but it reverted with a custom error
+      at Context.<anonymous> (test\JajaToken.test.js:43:5)
+
+  2) JajaToken
+       should upgrade token and keep state:
+     TypeError: no matching function (argument="key", value="address", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at Contract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\JajaToken.test.js:59:55)
+
+  3) JajaToken
+       should respect cap and burn/pause functionality:
+     AssertionError: Expected transaction to be reverted with reason 'ERC20Capped: cap exceeded', but it reverted with a custom error
+      at Context.<anonymous> (test\JajaToken.test.js:76:5)
+
+  4) Roles & UUPS protection
+       should only allow owner to authorize upgrades (UUPS) for token and vesting:
+     TypeError: no matching function (argument="key", value="address", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at Contract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\roles.test.js:40:56)
+
+  5) Roles & UUPS protection
+       should enforce PAUSER_ROLE for pause/unpause:
+     TypeError: contractFactory.attach is not a function
+      at attach (node_modules\@openzeppelin\hardhat-upgrades\src\utils\ethers.ts:7:26)
+      at getContractInstance (node_modules\@openzeppelin\hardhat-upgrades\src\utils\contract-instance.ts:29:26)
+      at Proxy.deployProxy (node_modules\@openzeppelin\hardhat-upgrades\src\deploy-proxy.ts:116:31)
+      at Context.<anonymous> (test\roles.test.js:53:18)
+
+  6) TokenVesting edge cases
+       should revert when duration is zero or cliff > duration:
+     TypeError: no matching function (argument="key", value="address", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at BaseContract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\vesting-edgecases.test.js:16:38)
+
+  7) TokenVesting edge cases
+       should revert revoke when not revocable:
+     TypeError: no matching function (argument="key", value="address", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at BaseContract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\vesting-edgecases.test.js:32:47)
+
+  8) TokenVesting
+       should vest tokens linearly after the cliff and allow release:
+     TypeError: no matching function (argument="key", value="address", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at BaseContract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\Vesting.test.js:20:47)
+
+  9) TokenVesting
+       should not allow revoke if not revocable:
+     TypeError: no matching function (argument="key", value="address", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at BaseContract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\Vesting.test.js:92:47)
+
+  10) TokenVestingUpgradeable
+       should deploy upgradeable vesting and allow release/revoke properly:
+     TypeError: no matching function (argument="key", value="address", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at Contract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\VestingUpgradeable.test.js:26:63)
+
+  11) TokenVestingUpgradeable
+       should upgrade vesting contract and keep state:
+     TypeError: no matching function (argument="key", value="address", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at Contract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\VestingUpgradeable.test.js:66:63)
+
+
+

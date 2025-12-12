@@ -1,0 +1,69 @@
+npm verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+npm info using npm@10.9.0
+npm info using node@v22.12.0
+npm verbose title npm ci
+npm verbose argv "ci" "--no-audit" "--progress" "false" "--loglevel" "verbose"
+npm verbose logfile logs-max:10 dir:C:\Users\jungt\AppData\Local\npm-cache\_logs\2025-12-11T05_08_16_632Z-
+npm verbose logfile C:\Users\jungt\AppData\Local\npm-cache\_logs\2025-12-11T05_08_16_632Z-debug-0.log
+npm verbose loadVirtual Error: loadVirtual requires existing shrinkwrap file
+npm verbose loadVirtual     at Arborist.loadVirtual (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\load-virtual.js:51:18)
+npm verbose loadVirtual     at async CI.exec (C:\Program Files\nodejs\node_modules\npm\lib\commands\ci.js:49:5)
+npm verbose loadVirtual     at async Npm.exec (C:\Program Files\nodejs\node_modules\npm\lib\npm.js:207:9)
+npm verbose loadVirtual     at async module.exports (C:\Program Files\nodejs\node_modules\npm\lib\cli\entry.js:74:5)
+npm verbose stack Error: 
+npm verbose stack The `npm ci` command can only install with an existing package-lock.json or
+npm verbose stack npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or
+npm verbose stack later to generate a package-lock.json file, then try again.
+npm verbose stack
+npm verbose stack Clean install a project
+npm verbose stack
+npm verbose stack Usage:
+npm verbose stack npm ci
+npm verbose stack
+npm verbose stack Options:
+npm verbose stack [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+npm verbose stack [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+npm verbose stack [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+npm verbose stack [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+npm verbose stack [--no-bin-links] [--no-fund] [--dry-run]
+npm verbose stack [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+npm verbose stack [-ws|--workspaces] [--include-workspace-root] [--install-links]
+npm verbose stack
+npm verbose stack aliases: clean-install, ic, install-clean, isntall-clean
+npm verbose stack
+npm verbose stack Run "npm help ci" for more info
+npm verbose stack     at CI.usageError (C:\Program Files\nodejs\node_modules\npm\lib\base-cmd.js:111:26)
+npm verbose stack     at C:\Program Files\nodejs\node_modules\npm\lib\commands\ci.js:55:18
+npm verbose stack     at async CI.exec (C:\Program Files\nodejs\node_modules\npm\lib\commands\ci.js:49:5)
+npm verbose stack     at async Npm.exec (C:\Program Files\nodejs\node_modules\npm\lib\npm.js:207:9)
+npm verbose stack     at async module.exports (C:\Program Files\nodejs\node_modules\npm\lib\cli\entry.js:74:5)
+npm error code EUSAGE
+npm error
+npm error The `npm ci` command can only install with an existing package-lock.json or
+npm error npm-shrinkwrap.json with lockfileVersion >= 1. Run an install with npm@5 or
+npm error later to generate a package-lock.json file, then try again.
+npm error
+npm error Clean install a project
+npm error
+npm error Usage:
+npm error npm ci
+npm error
+npm error Options:
+npm error [--install-strategy <hoisted|nested|shallow|linked>] [--legacy-bundling]
+npm error [--global-style] [--omit <dev|optional|peer> [--omit <dev|optional|peer> ...]]
+npm error [--include <prod|dev|optional|peer> [--include <prod|dev|optional|peer> ...]]
+npm error [--strict-peer-deps] [--foreground-scripts] [--ignore-scripts] [--no-audit]
+npm error [--no-bin-links] [--no-fund] [--dry-run]
+npm error [-w|--workspace <workspace-name> [-w|--workspace <workspace-name> ...]]
+npm error [-ws|--workspaces] [--include-workspace-root] [--install-links]
+npm error
+npm error aliases: clean-install, ic, install-clean, isntall-clean
+npm error
+npm error Run "npm help ci" for more info
+npm verbose cwd C:\workspace\hardhat-erc20
+npm verbose os Windows_NT 10.0.26200
+npm verbose node v22.12.0
+npm verbose npm  v10.9.0
+npm verbose exit 1
+npm verbose code 1
+npm error A complete log of this run can be found in: C:\Users\jungt\AppData\Local\npm-cache\_logs\2025-12-11T05_08_16_632Z-debug-0.log

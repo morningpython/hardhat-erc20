@@ -1,0 +1,4 @@
+[31m[1mError[22m[39m [31m[1mHH801:[22m[39m Plugin @openzeppelin/hardhat-upgrades requires the following dependencies to be installed: @nomiclabs/hardhat-ethers, @nomiclabs/hardhat-etherscan.
+Please run: npm install --save-dev "@nomiclabs/hardhat-ethers@^2.0.0" "@nomiclabs/hardhat-etherscan@^3.1.0"
+
+For more info go to https://v2.hardhat.org/HH801 or run Hardhat with --show-stack-traces

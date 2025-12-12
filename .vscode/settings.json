@@ -1,0 +1,10 @@
+{
+  // Reduce editor font, terminal font and minimize UI chrome for a compact coding view
+  // Increase font and reset zoom for readability
+  "editor.fontSize": 18,
+  "terminal.integrated.fontSize": 16,
+  "window.zoomLevel": 1,
+  "editor.lineHeight": 28,
+  "workbench.statusBar.visible": true,
+  "workbench.sideBar.location": "left"
+}

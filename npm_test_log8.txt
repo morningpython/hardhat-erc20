@@ -1,0 +1,26 @@
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Downloading compiler 0.8.22
+[1m[31mDeclarationError:[39m[22m Undeclared identifier.
+  --> contracts/JajaTokenUpgradeable.sol:28:9:
+   |
+28 |         _setupRole(DEFAULT_ADMIN_ROLE, _msgSender());
+   |         ^^^^^^^^^^
+
+
+[1m[31mDeclarationError:[39m[22m Undeclared identifier.
+  --> contracts/JajaTokenUpgradeable.sol:29:9:
+   |
+29 |         _setupRole(MINTER_ROLE, _msgSender());
+   |         ^^^^^^^^^^
+
+
+[1m[31mDeclarationError:[39m[22m Undeclared identifier.
+  --> contracts/JajaTokenUpgradeable.sol:30:9:
+   |
+30 |         _setupRole(PAUSER_ROLE, _msgSender());
+   |         ^^^^^^^^^^
+
+
+[31m[1mError[22m[39m [31m[1mHH600:[22m[39m Compilation failed
+
+For more info go to https://v2.hardhat.org/HH600 or run Hardhat with --show-stack-traces

@@ -1,0 +1,91 @@
+npm verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+npm info using npm@10.9.0
+npm info using node@v22.12.0
+npm verbose title npm install
+npm verbose argv "install" "--no-audit" "--no-fund" "--progress" "false" "--loglevel" "verbose"
+npm verbose logfile logs-max:10 dir:C:\Users\jungt\AppData\Local\npm-cache\_logs\2025-12-11T05_10_10_436Z-
+npm verbose logfile C:\Users\jungt\AppData\Local\npm-cache\_logs\2025-12-11T05_10_10_436Z-debug-0.log
+npm http fetch GET 200 https://registry.npmjs.org/hardhat 854ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/ts-node 81ms (cache updated)
+npm http fetch GET 200 https://registry.npmjs.org/@swc%2fcore 169ms (cache updated)
+npm http fetch GET 200 https://registry.npmjs.org/@swc%2fhelpers 95ms (cache updated)
+npm http fetch GET 200 https://registry.npmjs.org/@swc%2fwasm 339ms (cache updated)
+npm http fetch GET 200 https://registry.npmjs.org/@types%2fnode 317ms (cache updated)
+npm http fetch GET 200 https://registry.npmjs.org/typescript 265ms (cache updated)
+npm http fetch GET 200 https://registry.npmjs.org/@nomicfoundation%2fhardhat-toolbox 1213ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@nomicfoundation%2fhardhat-chai-matchers 1296ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@nomicfoundation%2fhardhat-ethers 977ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/ethers 117ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/chai 57ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@nomicfoundation%2fhardhat-network-helpers 377ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@nomicfoundation%2fhardhat-verify 400ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@typechain%2fethers-v6 1199ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/typechain 550ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@typechain%2fhardhat 734ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@types%2fchai 54ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@types%2fmocha 49ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/hardhat-gas-reporter 502ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/solidity-coverage 529ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@openzeppelin%2fhardhat-upgrades 1326ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@nomiclabs%2fhardhat-ethers 926ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/ethers 10ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/@nomiclabs%2fhardhat-etherscan 1262ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@openzeppelin%2fcontracts-upgradeable 1513ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@openzeppelin%2fcontracts 1308ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/mocha 221ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/eslint 201ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/eslint-config-next 231ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/typescript 73ms (cache hit)
+npm http fetch GET 200 https://registry.npmjs.org/eslint-config-prettier 53ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/prettier 74ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/eslint-plugin-react 52ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/eslint-plugin-react-hooks 236ms (cache miss)
+npm verbose stack Error: could not resolve
+npm verbose stack     at PlaceDep.failPeerConflict (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\place-dep.js:503:25)
+npm verbose stack     at new PlaceDep (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\place-dep.js:157:21)
+npm verbose stack     at #buildDepStep (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:920:18)
+npm verbose stack     at async Arborist.buildIdealTree (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\build-ideal-tree.js:181:7)
+npm verbose stack     at async Promise.all (index 1)
+npm verbose stack     at async Arborist.reify (C:\Program Files\nodejs\node_modules\npm\node_modules\@npmcli\arborist\lib\arborist\reify.js:131:5)
+npm verbose stack     at async Install.exec (C:\Program Files\nodejs\node_modules\npm\lib\commands\install.js:150:5)
+npm verbose stack     at async Npm.exec (C:\Program Files\nodejs\node_modules\npm\lib\npm.js:207:9)
+npm verbose stack     at async module.exports (C:\Program Files\nodejs\node_modules\npm\lib\cli\entry.js:74:5)
+npm error code ERESOLVE
+npm error ERESOLVE could not resolve
+npm error
+npm error While resolving: hardhat-erc20@0.1.0
+npm error Found: ethers@6.16.0
+npm error node_modules/ethers
+npm error   peer ethers@"^6.4.0" from @nomicfoundation/hardhat-toolbox@3.0.0
+npm error   node_modules/@nomicfoundation/hardhat-toolbox
+npm error     dev @nomicfoundation/hardhat-toolbox@"^3.0.0" from the root project
+npm error   peer ethers@"^6.1.0" from @typechain/hardhat@8.0.3
+npm error   node_modules/@typechain/hardhat
+npm error     peer @typechain/hardhat@"^8.0.0" from @nomicfoundation/hardhat-toolbox@3.0.0
+npm error     node_modules/@nomicfoundation/hardhat-toolbox
+npm error       dev @nomicfoundation/hardhat-toolbox@"^3.0.0" from the root project
+npm error   3 more (@typechain/ethers-v6, ...)
+npm error
+npm error Could not resolve dependency:
+npm error dev @openzeppelin/hardhat-upgrades@"^1.20.0" from the root project
+npm error
+npm error Conflicting peer dependency: ethers@5.8.0
+npm error node_modules/ethers
+npm error   peer ethers@"^5.0.5" from @openzeppelin/hardhat-upgrades@1.28.0
+npm error   node_modules/@openzeppelin/hardhat-upgrades
+npm error     dev @openzeppelin/hardhat-upgrades@"^1.20.0" from the root project
+npm error
+npm error Fix the upstream dependency conflict, or retry
+npm error this command with --force or --legacy-peer-deps
+npm error to accept an incorrect (and potentially broken) dependency resolution.
+npm error
+npm error
+npm error For a full report see:
+npm error C:\Users\jungt\AppData\Local\npm-cache\_logs\2025-12-11T05_10_10_436Z-eresolve-report.txt
+npm verbose cwd C:\workspace\hardhat-erc20
+npm verbose os Windows_NT 10.0.26200
+npm verbose node v22.12.0
+npm verbose npm  v10.9.0
+npm verbose exit 1
+npm verbose code 1
+npm error A complete log of this run can be found in: C:\Users\jungt\AppData\Local\npm-cache\_logs\2025-12-11T05_10_10_436Z-debug-0.log

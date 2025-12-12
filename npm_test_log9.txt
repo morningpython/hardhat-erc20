@@ -1,0 +1,11 @@
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  override existing env vars with { override: true }
+[1m[31mDeclarationError:[39m[22m Identifier not found or not unique.
+  --> contracts/TokenVestingUpgradeable.sol:12:5:
+   |
+12 |     IERC20Upgradeable public token;
+   |     ^^^^^^^^^^^^^^^^^
+
+
+[31m[1mError[22m[39m [31m[1mHH600:[22m[39m Compilation failed
+
+For more info go to https://v2.hardhat.org/HH600 or run Hardhat with --show-stack-traces

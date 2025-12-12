@@ -1,0 +1,63 @@
+{
+  "name": "hardhat-erc20",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "test": "npx hardhat test",
+    "compile": "npx hardhat compile",
+    "deploy": "npx hardhat run --network localhost scripts/deploy.js",
+    "deploy:upgradeable": "npx hardhat run --network localhost scripts/deploy_upgradeable.js",
+    "deploy:upgradeable:vesting": "npx hardhat run --network localhost scripts/deploy_upgradeable_vesting.js",
+    "upgrade:token:v2": "node ./scripts/upgrade_token_v2.js",
+    "upgrade:vesting:v2": "node ./scripts/upgrade_vesting_v2.js",
+    "deploy:impl:token": "node ./scripts/deploy_impl_token_v2.js",
+    "deploy:impl:vesting": "node ./scripts/deploy_impl_vesting_v2.js",
+    "deploy:impl:and-upgrade-token": "node ./scripts/deploy_impl_token_v2.js && node ./scripts/upgrade_token_v2.js",
+    "deploy:impl:and-upgrade-vesting": "node ./scripts/deploy_impl_vesting_v2.js && node ./scripts/upgrade_vesting_v2.js",
+    "deploy:impls:and-upgrade": "node ./scripts/deploy_impls_and_upgrade.js",
+    "deploy:impl:token:verify": "node ./scripts/deploy_impl_token_v2.js",
+    "deploy:impl:vesting:verify": "node ./scripts/deploy_impl_vesting_v2.js",
+    "verify:proxy": "node ./scripts/verify_proxy.js",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "format": "prettier --write .",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix"
+  },
+  "lintConfig": {
+    "ignorePatterns": [
+      "node_modules",
+      "artifacts",
+      "cache",
+      "out"
+    ],
+    "reportUnusedDisableDirectives": true
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-chai-matchers": "^2.0.0",
+    "@nomicfoundation/hardhat-ethers": "^3.0.0",
+    "@nomicfoundation/hardhat-network-helpers": "^1.0.0",
+    "@nomicfoundation/hardhat-toolbox": "^3.0.0",
+    "@nomicfoundation/hardhat-verify": "^1.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.1.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "@openzeppelin/contracts-upgradeable": "^5.0.0",
+    "@openzeppelin/hardhat-upgrades": "^3.9.1",
+    "@typechain/ethers-v6": "^0.4.0",
+    "@typechain/hardhat": "^8.0.0",
+    "@types/chai": "^4.2.0",
+    "@types/mocha": "^9.1.0",
+    "chai": "^4.3.7",
+    "dotenv": "^17.2.3",
+    "eslint": "^8.50.0",
+    "eslint-config-next": "^13.4.0",
+    "eslint-config-prettier": "^9.0.0",
+    "ethers": "^6.4.0",
+    "hardhat": "^2.17.1",
+    "hardhat-gas-reporter": "^1.0.8",
+    "mocha": "^10.2.0",
+    "prettier": "^3.5.0",
+    "solidity-coverage": "^0.8.1",
+    "ts-node": "^10.9.1",
+    "typechain": "^8.2.0",
+    "typescript": "^4.9.5"
+  }
+}

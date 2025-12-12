@@ -1,0 +1,26 @@
+[31mAn unexpected error occurred:[39m
+
+Error: Cannot find module 'dotenv'
+Require stack:
+- C:\workspace\hardhat-erc20\hardhat.config.js
+- C:\workspace\hardhat-erc20\node_modules\hardhat\internal\core\config\config-loading.js
+- C:\workspace\hardhat-erc20\node_modules\hardhat\internal\cli\cli.js
+- C:\workspace\hardhat-erc20\node_modules\hardhat\internal\cli\bootstrap.js
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1249:15)
+    at Function._load (node:internal/modules/cjs/loader:1075:27)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:219:24)
+    at Module.require (node:internal/modules/cjs/loader:1340:12)
+    at require (node:internal/modules/helpers:138:16)
+    at Object.<anonymous> (C:\workspace\hardhat-erc20\hardhat.config.js:4:1)
+    at Module._compile (node:internal/modules/cjs/loader:1565:14)
+    at Object..js (node:internal/modules/cjs/loader:1708:10)
+    at Module.load (node:internal/modules/cjs/loader:1318:32) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\workspace\\hardhat-erc20\\hardhat.config.js',
+    'C:\\workspace\\hardhat-erc20\\node_modules\\hardhat\\internal\\core\\config\\config-loading.js',
+    'C:\\workspace\\hardhat-erc20\\node_modules\\hardhat\\internal\\cli\\cli.js',
+    'C:\\workspace\\hardhat-erc20\\node_modules\\hardhat\\internal\\cli\\bootstrap.js'
+  ]
+}

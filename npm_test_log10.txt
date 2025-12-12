@@ -1,0 +1,11 @@
+[dotenv@17.2.3] injecting env (0) from .env -- tip: ⚙️  write to custom object with { processEnv: myObject }
+[1m[31mDeclarationError:[39m[22m Undeclared identifier.
+  --> contracts/TokenVestingUpgradeable.sol:39:17:
+   |
+39 |         token = IERC20Upgradeable(tokenAddress);
+   |                 ^^^^^^^^^^^^^^^^^
+
+
+[31m[1mError[22m[39m [31m[1mHH600:[22m[39m Compilation failed
+
+For more info go to https://v2.hardhat.org/HH600 or run Hardhat with --show-stack-traces

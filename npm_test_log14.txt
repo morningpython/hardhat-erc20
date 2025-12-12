@@ -1,0 +1,137 @@
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+
+
+  JajaToken
+    1) should deploy and set initial supply
+    2) should upgrade token and keep state
+    3) should respect cap and burn/pause functionality
+
+  Roles & UUPS protection
+    4) should only allow MINTER_ROLE to mint in upgradeable token
+    5) should only allow owner to authorize upgrades (UUPS) for token and vesting
+    6) should enforce PAUSER_ROLE for pause/unpause
+
+  TokenVesting edge cases
+    7) should revert when duration is zero or cliff > duration
+    8) should revert revoke when not revocable
+
+  TokenVesting
+    9) should vest tokens linearly after the cliff and allow release
+    10) should not allow revoke if not revocable
+
+  TokenVestingUpgradeable
+    11) should deploy upgradeable vesting and allow release/revoke properly
+    12) should upgrade vesting contract and keep state
+
+
+  0 passing (3s)
+  12 failing
+
+  1) JajaToken
+       should deploy and set initial supply:
+     TypeError: contractFactory.attach is not a function
+      at attach (node_modules\@openzeppelin\hardhat-upgrades\src\utils\ethers.ts:7:26)
+      at getContractInstance (node_modules\@openzeppelin\hardhat-upgrades\src\utils\contract-instance.ts:29:26)
+      at Proxy.deployProxy (node_modules\@openzeppelin\hardhat-upgrades\src\deploy-proxy.ts:116:31)
+      at Context.<anonymous> (test\JajaToken.test.js:11:18)
+
+  2) JajaToken
+       should upgrade token and keep state:
+     TypeError: contractFactory.attach is not a function
+      at attach (node_modules\@openzeppelin\hardhat-upgrades\src\utils\ethers.ts:7:26)
+      at getContractInstance (node_modules\@openzeppelin\hardhat-upgrades\src\utils\contract-instance.ts:29:26)
+      at Proxy.deployProxy (node_modules\@openzeppelin\hardhat-upgrades\src\deploy-proxy.ts:116:31)
+      at Context.<anonymous> (test\JajaToken.test.js:45:18)
+
+  3) JajaToken
+       should respect cap and burn/pause functionality:
+     TypeError: no matching function (argument="key", value="deployed", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at BaseContract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\JajaToken.test.js:64:16)
+
+  4) Roles & UUPS protection
+       should only allow MINTER_ROLE to mint in upgradeable token:
+     TypeError: contractFactory.attach is not a function
+      at attach (node_modules\@openzeppelin\hardhat-upgrades\src\utils\ethers.ts:7:26)
+      at getContractInstance (node_modules\@openzeppelin\hardhat-upgrades\src\utils\contract-instance.ts:29:26)
+      at Proxy.deployProxy (node_modules\@openzeppelin\hardhat-upgrades\src\deploy-proxy.ts:116:31)
+      at Context.<anonymous> (test\roles.test.js:10:18)
+
+  5) Roles & UUPS protection
+       should only allow owner to authorize upgrades (UUPS) for token and vesting:
+     TypeError: contractFactory.attach is not a function
+      at attach (node_modules\@openzeppelin\hardhat-upgrades\src\utils\ethers.ts:7:26)
+      at getContractInstance (node_modules\@openzeppelin\hardhat-upgrades\src\utils\contract-instance.ts:29:26)
+      at Proxy.deployProxy (node_modules\@openzeppelin\hardhat-upgrades\src\deploy-proxy.ts:116:31)
+      at Context.<anonymous> (test\roles.test.js:26:24)
+
+  6) Roles & UUPS protection
+       should enforce PAUSER_ROLE for pause/unpause:
+     TypeError: contractFactory.attach is not a function
+      at attach (node_modules\@openzeppelin\hardhat-upgrades\src\utils\ethers.ts:7:26)
+      at getContractInstance (node_modules\@openzeppelin\hardhat-upgrades\src\utils\contract-instance.ts:29:26)
+      at Proxy.deployProxy (node_modules\@openzeppelin\hardhat-upgrades\src\deploy-proxy.ts:116:31)
+      at Context.<anonymous> (test\roles.test.js:46:18)
+
+  7) TokenVesting edge cases
+       should revert when duration is zero or cliff > duration:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules\ethers\src.ts\contract\factory.ts:55:19)
+      at ContractFactory.deploy (node_modules\ethers\src.ts\contract\factory.ts:65:31)
+      at Context.<anonymous> (test\vesting-edgecases.test.js:10:29)
+
+  8) TokenVesting edge cases
+       should revert revoke when not revocable:
+     Error: incorrect number of arguments to constructor
+      at ContractFactory.getDeployTransaction (node_modules\ethers\src.ts\contract\factory.ts:55:19)
+      at ContractFactory.deploy (node_modules\ethers\src.ts\contract\factory.ts:65:31)
+      at Context.<anonymous> (test\vesting-edgecases.test.js:25:29)
+
+  9) TokenVesting
+       should vest tokens linearly after the cliff and allow release:
+     TypeError: no matching function (argument="key", value="deployed", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at BaseContract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\Vesting.test.js:12:16)
+
+  10) TokenVesting
+       should not allow revoke if not revocable:
+     TypeError: no matching function (argument="key", value="deployed", code=INVALID_ARGUMENT, version=6.4.0)
+      at makeError (node_modules\ethers\src.ts\utils\errors.ts:656:21)
+      at assert (node_modules\ethers\src.ts\utils\errors.ts:680:25)
+      at assertArgument (node_modules\ethers\src.ts\utils\errors.ts:692:5)
+      at Interface.getFunctionName (node_modules\ethers\src.ts\abi\interface.ts:416:23)
+      at buildWrappedMethod (node_modules\ethers\src.ts\contract\contract.ts:334:34)
+      at BaseContract.getFunction (node_modules\ethers\src.ts\contract\contract.ts:783:22)
+      at Object.get (node_modules\ethers\src.ts\contract\contract.ts:714:39)
+      at Context.<anonymous> (test\Vesting.test.js:85:16)
+
+  11) TokenVestingUpgradeable
+       should deploy upgradeable vesting and allow release/revoke properly:
+     TypeError: contractFactory.attach is not a function
+      at attach (node_modules\@openzeppelin\hardhat-upgrades\src\utils\ethers.ts:7:26)
+      at getContractInstance (node_modules\@openzeppelin\hardhat-upgrades\src\utils\contract-instance.ts:29:26)
+      at Proxy.deployProxy (node_modules\@openzeppelin\hardhat-upgrades\src\deploy-proxy.ts:116:31)
+      at Context.<anonymous> (test\VestingUpgradeable.test.js:12:18)
+
+  12) TokenVestingUpgradeable
+       should upgrade vesting contract and keep state:
+     TypeError: contractFactory.attach is not a function
+      at attach (node_modules\@openzeppelin\hardhat-upgrades\src\utils\ethers.ts:7:26)
+      at getContractInstance (node_modules\@openzeppelin\hardhat-upgrades\src\utils\contract-instance.ts:29:26)
+      at Proxy.deployProxy (node_modules\@openzeppelin\hardhat-upgrades\src\deploy-proxy.ts:116:31)
+      at Context.<anonymous> (test\VestingUpgradeable.test.js:53:18)
+
+
+

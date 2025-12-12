@@ -1,0 +1,92 @@
+[dotenv@17.2.3] injecting env (0) from .env -- tip: 👥 sync secrets across teammates & machines: https://dotenvx.com/ops
+Compiled 36 Solidity files successfully (evm target: paris).
+
+
+  JajaToken
+    1) should deploy and set initial supply
+    2) should upgrade token and keep state
+    3) should respect cap and burn/pause functionality
+
+  Roles & UUPS protection
+    4) should only allow MINTER_ROLE to mint in upgradeable token
+    5) should only allow owner to authorize upgrades (UUPS) for token and vesting
+    6) should enforce PAUSER_ROLE for pause/unpause
+
+  TokenVesting edge cases
+    7) should revert when duration is zero or cliff > duration
+    8) should revert revoke when not revocable
+
+  TokenVesting
+    9) should vest tokens linearly after the cliff and allow release
+    10) should not allow revoke if not revocable
+
+  TokenVestingUpgradeable
+    11) should deploy upgradeable vesting and allow release/revoke properly
+    12) should upgrade vesting contract and keep state
+
+
+  0 passing (1s)
+  12 failing
+
+  1) JajaToken
+       should deploy and set initial supply:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\JajaToken.test.js:8:40)
+
+  2) JajaToken
+       should upgrade token and keep state:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\JajaToken.test.js:42:40)
+
+  3) JajaToken
+       should respect cap and burn/pause functionality:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\JajaToken.test.js:60:40)
+
+  4) Roles & UUPS protection
+       should only allow MINTER_ROLE to mint in upgradeable token:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\roles.test.js:7:40)
+
+  5) Roles & UUPS protection
+       should only allow owner to authorize upgrades (UUPS) for token and vesting:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\roles.test.js:23:40)
+
+  6) Roles & UUPS protection
+       should enforce PAUSER_ROLE for pause/unpause:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\roles.test.js:43:40)
+
+  7) TokenVesting edge cases
+       should revert when duration is zero or cliff > duration:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\vesting-edgecases.test.js:7:40)
+
+  8) TokenVesting edge cases
+       should revert revoke when not revocable:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\vesting-edgecases.test.js:22:40)
+
+  9) TokenVesting
+       should vest tokens linearly after the cliff and allow release:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\Vesting.test.js:8:40)
+
+  10) TokenVesting
+       should not allow revoke if not revocable:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\Vesting.test.js:81:40)
+
+  11) TokenVestingUpgradeable
+       should deploy upgradeable vesting and allow release/revoke properly:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\VestingUpgradeable.test.js:9:40)
+
+  12) TokenVestingUpgradeable
+       should upgrade vesting contract and keep state:
+     TypeError: Cannot read properties of undefined (reading 'parseEther')
+      at Context.<anonymous> (test\VestingUpgradeable.test.js:50:40)
+
+
+

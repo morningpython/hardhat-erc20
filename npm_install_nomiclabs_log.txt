@@ -1,0 +1,53 @@
+npm verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+npm info using npm@10.9.0
+npm info using node@v22.12.0
+npm verbose title npm install @nomiclabs/hardhat-ethers@2.0.0 @nomiclabs/hardhat-etherscan@3.1.0
+npm verbose argv "install" "--save-dev" "@nomiclabs/hardhat-ethers@2.0.0" "@nomiclabs/hardhat-etherscan@3.1.0" "--legacy-peer-deps" "--no-audit" "--no-fund" "--progress" "false" "--loglevel" "verbose"
+npm verbose logfile logs-max:10 dir:C:\Users\jungt\AppData\Local\npm-cache\_logs\2025-12-11T05_30_57_808Z-
+npm verbose logfile C:\Users\jungt\AppData\Local\npm-cache\_logs\2025-12-11T05_30_57_808Z-debug-0.log
+npm http fetch GET 200 https://registry.npmjs.org/@nomiclabs%2fhardhat-ethers 1762ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/@nomiclabs%2fhardhat-etherscan 1284ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/cbor 68ms (cache revalidated)
+npm http fetch GET 200 https://registry.npmjs.org/nofilter 501ms (cache revalidated)
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\fsevents
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-win32-ia32-msvc
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-win32-arm64-msvc
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-wasm32-wasi
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@napi-rs\wasm-runtime
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@emnapi\core
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@emnapi\runtime
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@tybys\wasm-util
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@emnapi\wasi-threads
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@emnapi\core\node_modules\tslib
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@emnapi\runtime\node_modules\tslib
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@tybys\wasm-util\node_modules\tslib
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@emnapi\wasi-threads\node_modules\tslib
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-linux-x64-musl
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-linux-x64-gnu
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-linux-s390x-gnu
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-linux-riscv64-musl
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-linux-riscv64-gnu
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-linux-ppc64-gnu
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-linux-arm64-musl
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-linux-arm64-gnu
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-linux-arm-musleabihf
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-linux-arm-gnueabihf
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-freebsd-x64
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-darwin-x64
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-darwin-arm64
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-android-arm64
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\@unrs\resolver-binding-android-arm-eabi
+npm verbose reify failed optional dependency C:\workspace\hardhat-erc20\node_modules\solidity-coverage\node_modules\fsevents
+npm http fetch GET 200 https://registry.npmjs.org/cbor/-/cbor-5.2.0.tgz 204ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/nofilter/-/nofilter-1.0.4.tgz 206ms (cache miss)
+npm http fetch GET 200 https://registry.npmjs.org/@nomiclabs/hardhat-etherscan/-/hardhat-etherscan-3.1.0.tgz 1286ms (cache miss)
+npm warn deprecated @nomiclabs/hardhat-etherscan@3.1.0: The @nomiclabs/hardhat-etherscan package is deprecated, please use @nomicfoundation/hardhat-verify instead
+npm http fetch GET 200 https://registry.npmjs.org/@nomiclabs/hardhat-ethers/-/hardhat-ethers-2.0.0.tgz 1384ms (cache miss)
+
+added 4 packages in 8s
+npm verbose cwd C:\workspace\hardhat-erc20
+npm verbose os Windows_NT 10.0.26200
+npm verbose node v22.12.0
+npm verbose npm  v10.9.0
+npm verbose exit 0
+npm info ok
