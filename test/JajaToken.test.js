@@ -67,7 +67,8 @@ describe('JajaToken', function () {
 
     // Deploy V2 and upgrade
     const JajaV2 = await ensureAttach(await ethers.getContractFactory('JajaTokenV2Upgradeable'));
-    const upgraded = await upgrades.upgradeProxy(jaja.address, JajaV2);
+    await upgrades.upgradeProxy(jaja.address, JajaV2);
+    const upgraded = await JajaV2.attach(jaja.address);
     expect(await upgraded.getVersion()).to.equal('v2');
     // Existing state preserved
     expect(await upgraded.totalSupply()).to.equal(initialSupply);
@@ -93,7 +94,7 @@ describe('JajaToken', function () {
     const beforeTotal = await jaja.totalSupply();
     const burnAmount = ethers.parseEther('10');
     await jaja.connect(addr1).burn(burnAmount);
-    expect((await jaja.totalSupply()).lt(beforeTotal)).to.equal(true);
+    expect((await jaja.totalSupply()) < beforeTotal).to.equal(true);
 
     // Only owner can pause/unpause
     await expect(jaja.connect(addr1).pause()).to.be.revertedWith(

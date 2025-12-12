@@ -90,7 +90,8 @@ describe('TokenVestingUpgradeable', function () {
     const VestingV2 = await ensureAttach(
       await ethers.getContractFactory('TokenVestingV2Upgradeable')
     );
-    const upgraded = await upgrades.upgradeProxy(vesting.address, VestingV2);
+    await upgrades.upgradeProxy(vesting.address, VestingV2);
+    const upgraded = await VestingV2.attach(vesting.address);
     expect(await upgraded.getVersion()).to.equal('v2');
 
     // State preserved: released amount remains the same

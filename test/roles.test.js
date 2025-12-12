@@ -38,7 +38,7 @@ describe('Roles & UUPS protection', function () {
     });
     await tokenProxy.waitForDeployment();
 
-    const JajaV2 = await ethers.getContractFactory('JajaTokenV2Upgradeable');
+    const JajaV2 = await ensureAttach(await ethers.getContractFactory('JajaTokenV2Upgradeable'));
     const impl = await JajaV2.deploy();
     await impl.waitForDeployment();
 
@@ -51,7 +51,8 @@ describe('Roles & UUPS protection', function () {
     await expect(proxyAsUUPS.upgradeTo(impl.address)).to.be.reverted;
 
     // Owner should be able to upgrade using the upgrades plugin
-    const upgraded = await upgrades.upgradeProxy(tokenProxy.address, JajaV2);
+    await upgrades.upgradeProxy(tokenProxy.address, JajaV2);
+    const upgraded = await JajaV2.attach(tokenProxy.address);
     expect(await upgraded.getVersion()).to.equal('v2');
   });
 
