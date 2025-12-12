@@ -69,6 +69,9 @@ describe('JajaToken', function () {
     const JajaV2 = await ensureAttach(await ethers.getContractFactory('JajaTokenV2Upgradeable'));
     await upgrades.upgradeProxy(jaja.address, JajaV2);
     const upgraded = await JajaV2.attach(jaja.address);
+    // debug: ensure ABI includes getVersion
+    console.log('JajaV2 ABI functions:', Object.keys(upgraded.interface.functions));
+    console.log('Upgraded address:', upgraded.target ?? upgraded.address);
     expect(await upgraded.getVersion()).to.equal('v2');
     // Existing state preserved
     expect(await upgraded.totalSupply()).to.equal(initialSupply);
