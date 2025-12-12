@@ -70,8 +70,14 @@ describe('JajaToken', function () {
     await upgrades.upgradeProxy(jaja.address, JajaV2);
     const upgraded = await JajaV2.attach(jaja.address);
     // debug: ensure ABI includes getVersion
-    console.log('JajaV2 ABI functions:', Object.keys(upgraded.interface.functions));
+    console.log('Upgraded object keys:', Object.keys(upgraded));
     console.log('Upgraded address:', upgraded.target ?? upgraded.address);
+    console.log('upgraded.interface type:', typeof upgraded.interface);
+    try {
+      console.log('JajaV2 ABI functions:', Object.keys(upgraded.interface.functions));
+    } catch (err) {
+      console.log('Error reading upgraded.interface.functions:', err && err.message);
+    }
     expect(await upgraded.getVersion()).to.equal('v2');
     // Existing state preserved
     expect(await upgraded.totalSupply()).to.equal(initialSupply);
