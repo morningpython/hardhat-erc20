@@ -22,16 +22,18 @@ jobs:
     - name: Install dependencies (root)
       run: npm install --legacy-peer-deps
 
-    - name: Lint (ESLint)
-      run: npm run lint
-
-    - name: Prettier check
-      run: npx prettier --check .
-
     - name: Install frontend deps
       run: |
         cd frontend
         npm install --legacy-peer-deps
+
+    - name: Lint (frontend)
+      run: |
+        cd frontend
+        npm run lint
+
+    - name: Prettier check
+      run: npx prettier --check .
 
     - name: Run tests
       run: npm test
