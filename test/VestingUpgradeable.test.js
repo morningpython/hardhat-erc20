@@ -4,7 +4,7 @@ const { ethers, upgrades } = require('hardhat');
 describe('TokenVestingUpgradeable', function () {
   async function ensureAttach(factory) {
     if (!factory.attach) {
-      factory.attach = (address) => ethers.getContractAt(factory.interface.format('json'), address);
+      factory.attach = (address) => ethers.getContractAt(factory.interface, address);
     }
     return factory;
   }
