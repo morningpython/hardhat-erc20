@@ -19,7 +19,13 @@ export default function WalletButton({ signer, setSigner, provider, setProvider 
 
   return (
     <div>
-      {signer ? <span className="small">Connected: {address}</span> : <button className="btn" onClick={connect}>Connect Wallet</button>}
+      {signer ? (
+        <span className="small">Connected: {address}</span>
+      ) : (
+        <button className="btn" onClick={connect}>
+          Connect Wallet
+        </button>
+      )}
     </div>
   );
 }

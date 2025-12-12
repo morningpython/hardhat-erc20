@@ -46,7 +46,9 @@ async function main() {
   }
 
   if (!proxyToken && !proxyVesting) {
-    console.log('No proxy addresses passed via env variables PROXY_TOKEN/PROXY_VESTING. Nothing to upgrade.');
+    console.log(
+      'No proxy addresses passed via env variables PROXY_TOKEN/PROXY_VESTING. Nothing to upgrade.'
+    );
   }
 }
 

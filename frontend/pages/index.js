@@ -29,7 +29,18 @@ function WalletButton({ signer, setSigner, provider, setProvider, setCurrentAcco
 
   return (
     <div>
-      {signer ? (<span className="small">Connected: {address} <button className="btn small" onClick={disconnect} style={{ marginLeft: 8 }}>Disconnect</button></span>) : <button className="btn" onClick={connect}>Connect Wallet</button>}
+      {signer ? (
+        <span className="small">
+          Connected: {address}{' '}
+          <button className="btn small" onClick={disconnect} style={{ marginLeft: 8 }}>
+            Disconnect
+          </button>
+        </span>
+      ) : (
+        <button className="btn" onClick={connect}>
+          Connect Wallet
+        </button>
+      )}
     </div>
   );
 }
@@ -60,24 +71,20 @@ export default function Home() {
     'function mint(address,uint256)',
     'function pause()',
     'function unpause()',
-    'event Transfer(address indexed, address indexed, uint256)'
+    'event Transfer(address indexed, address indexed, uint256)',
   ];
 
   const vestingAbi = [
     'function releasableAmount() view returns (uint256)',
     'function vestedAmount() view returns (uint256)',
     'function release()',
-    'function revoke()'
+    'function revoke()',
   ];
 
   // ABI fragment to perform UUPS upgrade (exposed on implementation, callable on proxy)
-  const uupsAbi = [
-    'function upgradeTo(address newImplementation) external'
-  ];
+  const uupsAbi = ['function upgradeTo(address newImplementation) external'];
 
-  const ownerAbi = [
-    'function owner() view returns (address)'
-  ];
+  const ownerAbi = ['function owner() view returns (address)'];
 
   async function loadToken() {
     if (!provider || !config.tokenAddress) return;
@@ -91,7 +98,11 @@ export default function Home() {
         setBalance(ethers.formatEther(await c.balanceOf(signerAddress)));
       }
       try {
-        const ownerAddr = await (new ethers.Contract(config.tokenAddress, ownerAbi, provider)).owner();
+        const ownerAddr = await new ethers.Contract(
+          config.tokenAddress,
+          ownerAbi,
+          provider
+        ).owner();
         setTokenOwner(ownerAddr);
       } catch (e) {
         // not all tokens have owner
@@ -111,7 +122,11 @@ export default function Home() {
       console.error(e);
     }
     try {
-      const ownerAddr = await (new ethers.Contract(config.vestingAddress, ownerAbi, provider)).owner();
+      const ownerAddr = await new ethers.Contract(
+        config.vestingAddress,
+        ownerAbi,
+        provider
+      ).owner();
       setVestingOwner(ownerAddr);
     } catch (e) {
       // ignore
@@ -136,13 +151,20 @@ export default function Home() {
       setCurrentAccount(accounts[0]);
       // update provider/signer if possible
       const p = new ethers.BrowserProvider(window.ethereum);
-      p.getSigner().then(s => { setSigner(s); setProvider(p); }).catch(() => {});
+      p.getSigner()
+        .then((s) => {
+          setSigner(s);
+          setProvider(p);
+        })
+        .catch(() => {});
     }
     function handleChainChanged(_chainId) {
       // reinitialize provider and signer on chain changes
       const p = new ethers.BrowserProvider(window.ethereum);
       setProvider(p);
-      p.getSigner().then(s => setSigner(s)).catch(() => {});
+      p.getSigner()
+        .then((s) => setSigner(s))
+        .catch(() => {});
       // reload data
       loadToken();
       loadVesting();
@@ -157,7 +179,10 @@ export default function Home() {
   }, []);
 
   async function doMint() {
-    if (!signer) { alert('connect first'); return; }
+    if (!signer) {
+      alert('connect first');
+      return;
+    }
     setTxInProgress(true);
     const ct = new ethers.Contract(config.tokenAddress, tokenAbi, signer);
     const amt = ethers.parseEther(mintAmount);
@@ -168,12 +193,19 @@ export default function Home() {
       await tx.wait();
       setTxStatus('Mint transaction mined');
       await loadToken();
-    } catch (err) { console.error(err); setTxStatus('Mint failed: ' + (err?.message || err)); }
-    finally { setTxInProgress(false); }
+    } catch (err) {
+      console.error(err);
+      setTxStatus('Mint failed: ' + (err?.message || err));
+    } finally {
+      setTxInProgress(false);
+    }
   }
 
   async function doRelease() {
-    if (!signer) { alert('connect first'); return; }
+    if (!signer) {
+      alert('connect first');
+      return;
+    }
     setTxInProgress(true);
     const ct = new ethers.Contract(config.vestingAddress, vestingAbi, signer);
     try {
@@ -183,12 +215,19 @@ export default function Home() {
       await tx.wait();
       setTxStatus('Release transaction mined');
       await loadVesting();
-    } catch (err) { console.error(err); alert('Release failed'); }
-    finally { setTxInProgress(false); }
+    } catch (err) {
+      console.error(err);
+      alert('Release failed');
+    } finally {
+      setTxInProgress(false);
+    }
   }
 
   async function doRevoke() {
-    if (!signer) { alert('connect first'); return; }
+    if (!signer) {
+      alert('connect first');
+      return;
+    }
     setTxInProgress(true);
     const v = new ethers.Contract(config.vestingAddress, vestingAbi, signer);
     try {
@@ -198,12 +237,19 @@ export default function Home() {
       await tx.wait();
       setTxStatus('Revoke transaction mined');
       await loadVesting();
-    } catch (err) { console.error(err); alert('Revoke failed: ' + (err?.message || err)); }
-    finally { setTxInProgress(false); }
+    } catch (err) {
+      console.error(err);
+      alert('Revoke failed: ' + (err?.message || err));
+    } finally {
+      setTxInProgress(false);
+    }
   }
 
   async function doUpgrade(proxyAddress, newImplementation) {
-    if (!signer) { alert('connect first'); return; }
+    if (!signer) {
+      alert('connect first');
+      return;
+    }
     if (!ethers.isAddress(proxyAddress) || !ethers.isAddress(newImplementation)) {
       alert('Invalid address');
       return;
@@ -217,43 +263,102 @@ export default function Home() {
       await tx.wait();
       setTxStatus('Upgrade transaction mined');
       setTxInProgress(false);
-    } catch (err) { console.error(err); alert('Upgrade failed: ' + (err?.message || err)); }
-    finally { setTxInProgress(false); }
+    } catch (err) {
+      console.error(err);
+      alert('Upgrade failed: ' + (err?.message || err));
+    } finally {
+      setTxInProgress(false);
+    }
   }
 
   return (
     <div className="container">
       <div className="header">
         <h2>JaJa Token (Frontend)</h2>
-        <WalletButton provider={provider} setProvider={setProvider} signer={signer} setSigner={setSigner} setCurrentAccount={setCurrentAccount} />
+        <WalletButton
+          provider={provider}
+          setProvider={setProvider}
+          signer={signer}
+          setSigner={setSigner}
+          setCurrentAccount={setCurrentAccount}
+        />
       </div>
       {txStatus && (
         <div className="card">
-          <div className="small">Status: {txStatus} {txHash ? <a href={`https://etherscan.io/tx/${txHash}`} target="_blank" rel="noreferrer">({txHash.slice(0,10)}...)</a> : ''}</div>
+          <div className="small">
+            Status: {txStatus}{' '}
+            {txHash ? (
+              <a href={`https://etherscan.io/tx/${txHash}`} target="_blank" rel="noreferrer">
+                ({txHash.slice(0, 10)}...)
+              </a>
+            ) : (
+              ''
+            )}
+          </div>
         </div>
       )}
 
       <div className="card">
-        <strong>{tokenName} ({symbol})</strong>
+        <strong>
+          {tokenName} ({symbol})
+        </strong>
         <div className="small">Total Supply: {totalSupply}</div>
         <div className="small">Your Balance: {balance}</div>
       </div>
 
       <div className="card">
         <div>
-          <input className="input" type="text" value={mintAmount} onChange={(e)=>setMintAmount(e.target.value)} />
-          <button className="btn" onClick={doMint} disabled={!signer || txInProgress}>{txInProgress ? 'Processing...' : 'Mint'}</button>
+          <input
+            className="input"
+            type="text"
+            value={mintAmount}
+            onChange={(e) => setMintAmount(e.target.value)}
+          />
+          <button className="btn" onClick={doMint} disabled={!signer || txInProgress}>
+            {txInProgress ? 'Processing...' : 'Mint'}
+          </button>
         </div>
       </div>
 
       <div className="card">
         <strong>Vesting</strong>
         <div className="small">Releasable: {releasable}</div>
-        <button className="btn" onClick={doRelease} disabled={!signer || txInProgress}>{txInProgress ? 'Processing...' : 'Release'}</button>
-        <button className="btn" style={{ marginLeft: 8 }} onClick={doRevoke} disabled={!signer || txInProgress || !currentAccount || (vestingOwner && currentAccount.toLowerCase() !== vestingOwner.toLowerCase())}>Revoke (Owner only)</button>
+        <button className="btn" onClick={doRelease} disabled={!signer || txInProgress}>
+          {txInProgress ? 'Processing...' : 'Release'}
+        </button>
+        <button
+          className="btn"
+          style={{ marginLeft: 8 }}
+          onClick={doRevoke}
+          disabled={
+            !signer ||
+            txInProgress ||
+            !currentAccount ||
+            (vestingOwner && currentAccount.toLowerCase() !== vestingOwner.toLowerCase())
+          }
+        >
+          Revoke (Owner only)
+        </button>
         <div style={{ marginTop: 8 }}>
-          <input className="input" placeholder="New vesting implementation address" value={newVestingImpl} onChange={(e)=>setNewVestingImpl(e.target.value)} />
-          <button className="btn" style={{ marginTop: 8 }} onClick={() => doUpgrade(config.vestingAddress, newVestingImpl)} disabled={!newVestingImpl || txInProgress || !currentAccount || (vestingOwner && currentAccount.toLowerCase() !== vestingOwner.toLowerCase())}>{txInProgress ? 'Upgrading...' : 'Upgrade Vesting (owner only)'}</button>
+          <input
+            className="input"
+            placeholder="New vesting implementation address"
+            value={newVestingImpl}
+            onChange={(e) => setNewVestingImpl(e.target.value)}
+          />
+          <button
+            className="btn"
+            style={{ marginTop: 8 }}
+            onClick={() => doUpgrade(config.vestingAddress, newVestingImpl)}
+            disabled={
+              !newVestingImpl ||
+              txInProgress ||
+              !currentAccount ||
+              (vestingOwner && currentAccount.toLowerCase() !== vestingOwner.toLowerCase())
+            }
+          >
+            {txInProgress ? 'Upgrading...' : 'Upgrade Vesting (owner only)'}
+          </button>
         </div>
       </div>
 
@@ -261,8 +366,25 @@ export default function Home() {
         <strong>Token Upgrade</strong>
         <div className="small">Upgrade the token proxy to a new implementation by address</div>
         <div style={{ marginTop: 8 }}>
-          <input className="input" placeholder="New token implementation address" value={newTokenImpl} onChange={(e)=>setNewTokenImpl(e.target.value)} />
-          <button className="btn" style={{ marginTop: 8 }} onClick={() => doUpgrade(config.tokenAddress, newTokenImpl)} disabled={!newTokenImpl || txInProgress || !currentAccount || (tokenOwner && currentAccount.toLowerCase() !== tokenOwner.toLowerCase())}>{txInProgress ? 'Upgrading...' : 'Upgrade Token (owner only)'}</button>
+          <input
+            className="input"
+            placeholder="New token implementation address"
+            value={newTokenImpl}
+            onChange={(e) => setNewTokenImpl(e.target.value)}
+          />
+          <button
+            className="btn"
+            style={{ marginTop: 8 }}
+            onClick={() => doUpgrade(config.tokenAddress, newTokenImpl)}
+            disabled={
+              !newTokenImpl ||
+              txInProgress ||
+              !currentAccount ||
+              (tokenOwner && currentAccount.toLowerCase() !== tokenOwner.toLowerCase())
+            }
+          >
+            {txInProgress ? 'Upgrading...' : 'Upgrade Token (owner only)'}
+          </button>
         </div>
       </div>
     </div>

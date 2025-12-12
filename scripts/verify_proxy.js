@@ -1,9 +1,9 @@
-const hre = require("hardhat");
+const hre = require('hardhat');
 
 async function main() {
   const proxyAddr = process.env.PROXY_ADDRESS;
   if (!proxyAddr) {
-    console.error("Please set PROXY_ADDRESS env var");
+    console.error('Please set PROXY_ADDRESS env var');
     process.exit(1);
   }
 
@@ -12,8 +12,8 @@ async function main() {
   console.log(`Implementation address: ${impl}`);
 
   // run verify task
-  await hre.run("verify:verify", { address: impl });
-  console.log("Verify submitted for implementation contract.");
+  await hre.run('verify:verify', { address: impl });
+  console.log('Verify submitted for implementation contract.');
 }
 
 main().catch((e) => {

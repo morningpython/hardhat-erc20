@@ -24,13 +24,14 @@ npm test
 
 1. Run a local Hardhat node and deploy:
 
-```powershell
+````powershell
 ```powershell
 npx hardhat node
 # In a separate terminal
 npm run deploy
-```
-```
+````
+
+````
 
 ## Files
 
@@ -69,9 +70,10 @@ After you deploy a proxy you can upgrade the implementation using scripts includ
 ```powershell
 set PROXY_ADDRESS=0xYourProxyAddressHere
 npm run upgrade:token:v2
-```
+````
 
 For vesting proxy upgrade:
+
 ```powershell
 set PROXY_ADDRESS=0xVestingProxyAddressHere
 npm run upgrade:vesting:v2
@@ -106,6 +108,7 @@ The scripts are also suitable for CI/CD; make sure you set the appropriate env v
 If you'd like to verify contracts on Etherscan from CI or locally, set the `ETHERSCAN_API_KEY` environment variable and `VERIFY_PROXY_ADDRESS` (proxy address) in the repository secrets. The CI workflow will attempt to verify the implementation contract behind the proxy.
 
 Local example:
+
 ```powershell
 set ETHERSCAN_API_KEY=YourApiKey
 set PROXY_ADDRESS=0xYourProxyAddr
@@ -117,6 +120,7 @@ PowerShell notes: if you get a "scripts is disabled on this system" or similar e
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
 ```
+
 Lint and format (run these commands locally):
 
 ```powershell
@@ -133,13 +137,11 @@ npm run format
 npm run dev
 ```
 
-
 This enables running local `npm` scripts from PowerShell if the policy is causing the error.
 
 ## CI (GitHub Actions)
 
 A CI workflow is included at `.github/workflows/ci.yml` which runs tests and builds the frontend on push and pull request.
-
 
 ## VS Code Tips (font & UI size)
 
@@ -173,4 +175,5 @@ If you prefer per-language overrides, edit `settings.json` and include per-langu
   }
 }
 ```
+
 - For production, add security checks, overflow protection, role-based access, and optimization.

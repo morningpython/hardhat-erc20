@@ -1,13 +1,13 @@
-const { expect } = require("chai");
-const { ethers } = require("hardhat");
+const { expect } = require('chai');
+const { ethers } = require('hardhat');
 
-describe("TokenVesting", function () {
-  it("should vest tokens linearly after the cliff and allow release", async function () {
+describe('TokenVesting', function () {
+  it('should vest tokens linearly after the cliff and allow release', async function () {
     const [owner, beneficiary, other] = await ethers.getSigners();
 
-    const initialSupply = ethers.parseEther("1000000");
-    const cap = ethers.parseEther("2000000");
-    const Jaja = await ethers.getContractFactory("JajaToken");
+    const initialSupply = ethers.parseEther('1000000');
+    const cap = ethers.parseEther('2000000');
+    const Jaja = await ethers.getContractFactory('JajaToken');
     const jaja = await Jaja.deploy(initialSupply, cap);
     await jaja.waitForDeployment();
 
@@ -15,22 +15,31 @@ describe("TokenVesting", function () {
     const now = (await ethers.provider.getBlock()).timestamp;
     const cliff = 7 * 24 * 3600; // 7 days
     const duration = 30 * 24 * 3600; // 30 days
-    const Vesting = await ethers.getContractFactory("TokenVesting");
+    const Vesting = await ethers.getContractFactory('TokenVesting');
     // Make the vesting revocable by owner (true)
-    const vesting = await Vesting.deploy(jaja.address, beneficiary.address, now, cliff, duration, true);
+    const vesting = await Vesting.deploy(
+      jaja.address,
+      beneficiary.address,
+      now,
+      cliff,
+      duration,
+      true
+    );
     await vesting.waitForDeployment();
 
     // Transfer allocation to vesting contract (for example: 10k tokens)
-    const allocation = ethers.parseEther("10000");
+    const allocation = ethers.parseEther('10000');
     await jaja.connect(owner).mint(vesting.address, allocation);
 
     // Before cliff, no tokens are releasable and non-beneficiary can't release
-    await expect(vesting.connect(other).release()).to.be.revertedWith("Vesting: only beneficiary");
-    await expect(vesting.connect(beneficiary).release()).to.be.revertedWith("Vesting: no tokens to release");
+    await expect(vesting.connect(other).release()).to.be.revertedWith('Vesting: only beneficiary');
+    await expect(vesting.connect(beneficiary).release()).to.be.revertedWith(
+      'Vesting: no tokens to release'
+    );
 
     // Move time to after cliff but before end (simulate 10 days)
-    await ethers.provider.send("evm_increaseTime", [10 * 24 * 3600]);
-    await ethers.provider.send("evm_mine");
+    await ethers.provider.send('evm_increaseTime', [10 * 24 * 3600]);
+    await ethers.provider.send('evm_mine');
 
     const releasableAfterCliff = await vesting.connect(beneficiary).releasableAmount();
     expect(releasableAfterCliff > 0n).to.equal(true);
@@ -42,18 +51,20 @@ describe("TokenVesting", function () {
     expect(beneficiaryBalanceAfter > beneficiaryBalanceBefore).to.equal(true);
 
     // Non-owner cannot revoke
-    await expect(vesting.connect(other).revoke()).to.be.revertedWith("Ownable: caller is not the owner");
+    await expect(vesting.connect(other).revoke()).to.be.revertedWith(
+      'Ownable: caller is not the owner'
+    );
 
     // Owner revokes remaining (after partial release)
     const ownerBalanceBefore = await jaja.balanceOf(owner.address);
     const releasedAfter = await vesting.released();
     // Revoke vesting (expect Revoked event)
-    await expect(vesting.connect(owner).revoke()).to.emit(vesting, "Revoked");
+    await expect(vesting.connect(owner).revoke()).to.emit(vesting, 'Revoked');
     const ownerBalanceAfter = await jaja.balanceOf(owner.address);
     expect(ownerBalanceAfter > ownerBalanceBefore).to.equal(true);
 
     // Owner cannot revoke again
-    await expect(vesting.connect(owner).revoke()).to.be.revertedWith("Vesting: already revoked");
+    await expect(vesting.connect(owner).revoke()).to.be.revertedWith('Vesting: already revoked');
 
     // Compute vested at revocation and ensure beneficiary can claim only vested amount
     const vestedAtRevocation = await vesting.vestedAmount();
@@ -66,8 +77,8 @@ describe("TokenVesting", function () {
     expect(releasableAfterRevoke).to.equal(expectedReleasable);
 
     // After revoke, time progression should not increase vested amount beyond revokedAt
-    await ethers.provider.send("evm_increaseTime", [30 * 24 * 3600]);
-    await ethers.provider.send("evm_mine");
+    await ethers.provider.send('evm_increaseTime', [30 * 24 * 3600]);
+    await ethers.provider.send('evm_mine');
 
     // beneficiary should only be able to claim up to vestedAtRevocation (not full allocation)
     await vesting.connect(beneficiary).release();
@@ -75,27 +86,34 @@ describe("TokenVesting", function () {
     expect(beneficiaryFinal).to.equal(vestedAtRevocation);
   });
 
-  it("should not allow revoke if not revocable", async function () {
+  it('should not allow revoke if not revocable', async function () {
     const [owner, beneficiary] = await ethers.getSigners();
 
-    const initialSupply = ethers.parseEther("1000000");
-    const cap = ethers.parseEther("2000000");
-    const Jaja = await ethers.getContractFactory("JajaToken");
+    const initialSupply = ethers.parseEther('1000000');
+    const cap = ethers.parseEther('2000000');
+    const Jaja = await ethers.getContractFactory('JajaToken');
     const jaja = await Jaja.deploy(initialSupply, cap);
     await jaja.waitForDeployment();
 
     const now = (await ethers.provider.getBlock()).timestamp;
     const cliff = 7 * 24 * 3600;
     const duration = 30 * 24 * 3600;
-    const Vesting = await ethers.getContractFactory("TokenVesting");
+    const Vesting = await ethers.getContractFactory('TokenVesting');
     // Not revocable
-    const vesting = await Vesting.deploy(jaja.address, beneficiary.address, now, cliff, duration, false);
+    const vesting = await Vesting.deploy(
+      jaja.address,
+      beneficiary.address,
+      now,
+      cliff,
+      duration,
+      false
+    );
     await vesting.waitForDeployment();
 
     // Transfer allocation to vesting
-    const allocation = ethers.parseEther("10000");
+    const allocation = ethers.parseEther('10000');
     await jaja.connect(owner).mint(vesting.address, allocation);
 
-    await expect(vesting.connect(owner).revoke()).to.be.revertedWith("Vesting: not revocable");
+    await expect(vesting.connect(owner).revoke()).to.be.revertedWith('Vesting: not revocable');
   });
 });

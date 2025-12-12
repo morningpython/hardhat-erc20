@@ -2,84 +2,84 @@ name: CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, master]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, master]
 
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
 
-    - name: Install dependencies (root)
-      run: npm install --legacy-peer-deps
+      - name: Install dependencies (root)
+        run: npm install --legacy-peer-deps
 
-    - name: Install frontend deps
-      run: |
-        cd frontend
-        npm install --legacy-peer-deps
+      - name: Install frontend deps
+        run: |
+          cd frontend
+          npm install --legacy-peer-deps
 
-    - name: Lint (frontend)
-      run: |
-        cd frontend
-        npm run lint
+      - name: Lint (frontend)
+        run: |
+          cd frontend
+          npm run lint
 
-    - name: Prettier check
-      run: npx prettier --check .
-      continue-on-error: true
+      - name: Prettier check
+        run: npx prettier --check .
+        continue-on-error: true
 
-    - name: Run tests
-      run: npm test
+      - name: Run tests
+        run: npm test
 
-    - name: Build frontend
-      run: |
-        cd frontend
-        npm run build
+      - name: Build frontend
+        run: |
+          cd frontend
+          npm run build
 
-    - name: Optional verify on etherscan
-      if: ${{ github.event_name == 'push' }}
-      env:
-        PROXY_ADDRESS: ${{ secrets.VERIFY_PROXY_ADDRESS }}
-        ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
-      run: |
-        if [ -n "$PROXY_ADDRESS" ] && [ -n "$ETHERSCAN_API_KEY" ]; then
-          echo "Verifying proxy impl on sepolia"
-          npx hardhat run --network sepolia scripts/verify_proxy.js
-        else
-          echo "Skipping verify - ETHERSCAN_API_KEY or PROXY_ADDRESS not provided"
-        fi
+      - name: Optional verify on etherscan
+        if: ${{ github.event_name == 'push' }}
+        env:
+          PROXY_ADDRESS: ${{ secrets.VERIFY_PROXY_ADDRESS }}
+          ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
+        run: |
+          if [ -n "$PROXY_ADDRESS" ] && [ -n "$ETHERSCAN_API_KEY" ]; then
+            echo "Verifying proxy impl on sepolia"
+            npx hardhat run --network sepolia scripts/verify_proxy.js
+          else
+            echo "Skipping verify - ETHERSCAN_API_KEY or PROXY_ADDRESS not provided"
+          fi
 
   deploy-testnet:
     needs: test-and-build
     if: ${{ github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 20
-    - name: Install dependencies (root)
-      run: npm install --legacy-peer-deps
-    - name: Deploy to Testnet (if secrets provided)
-      env:
-        DEPLOY_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
-        DEPLOY_RPC_URL: ${{ secrets.DEPLOY_RPC_URL }}
-      run: |
-        if [ -n "$DEPLOY_PRIVATE_KEY" ] && [ -n "$DEPLOY_RPC_URL" ]; then
-          echo "Deploying to sepolia..."
-          npx hardhat run --network sepolia scripts/deploy_upgradeable.js
-        else
-          echo "Skipping testnet deploy - secrets not set"
-        fi
+      - uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install dependencies (root)
+        run: npm install --legacy-peer-deps
+      - name: Deploy to Testnet (if secrets provided)
+        env:
+          DEPLOY_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
+          DEPLOY_RPC_URL: ${{ secrets.DEPLOY_RPC_URL }}
+        run: |
+          if [ -n "$DEPLOY_PRIVATE_KEY" ] && [ -n "$DEPLOY_RPC_URL" ]; then
+            echo "Deploying to sepolia..."
+            npx hardhat run --network sepolia scripts/deploy_upgradeable.js
+          else
+            echo "Skipping testnet deploy - secrets not set"
+          fi
 
-    - name: Lint (placeholder)
-      run: echo "Add a linter or audit steps here" 
+      - name: Lint (placeholder)
+        run: echo "Add a linter or audit steps here"
