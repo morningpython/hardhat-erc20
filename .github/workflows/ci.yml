@@ -31,7 +31,7 @@ jobs:
     - name: Install frontend deps
       run: |
         cd frontend
-        npm ci
+        npm install --legacy-peer-deps
 
     - name: Run tests
       run: npm test
@@ -65,7 +65,7 @@ jobs:
       with:
         node-version: 20
     - name: Install dependencies (root)
-      run: npm ci
+      run: npm install --legacy-peer-deps
     - name: Deploy to Testnet (if secrets provided)
       env:
         DEPLOY_PRIVATE_KEY: ${{ secrets.DEPLOY_PRIVATE_KEY }}
