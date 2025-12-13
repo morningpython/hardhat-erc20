@@ -1,10 +1,19 @@
 {
-  // Reduce editor font, terminal font and minimize UI chrome for a compact coding view
-  // Increase font and reset zoom for readability
-  "editor.fontSize": 18,
-  "terminal.integrated.fontSize": 16,
-  "window.zoomLevel": 1,
-  "editor.lineHeight": 28,
+  // Compact workspace: reduce editor and terminal fonts and UI zoom
+  "editor.fontSize": 12,
+  "editor.fontFamily": "Consolas, 'Courier New', monospace",
+  "minimap.enabled": false,
+
+  // Terminal and markdown preview sizes
+  "terminal.integrated.fontSize": 12,
+  "markdown.preview.fontSize": 13,
+  "[markdown]": {
+    "editor.fontSize": 13
+  },
+
+  // Slightly reduce overall UI scale to fit a half-screen layout
+  "window.zoomLevel": -1,
+  "editor.lineHeight": 20,
   "workbench.statusBar.visible": true,
   "workbench.sideBar.location": "left"
 }
